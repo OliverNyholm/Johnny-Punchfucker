@@ -647,7 +647,6 @@ C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windo
 C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\MenuImages\pauseMenu.xnb
 C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\MenuImages\pauseMenuHow.xnb
 C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\MenuImages\PauseQuest.xnb
-C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\PreviewData\GamePreviewInfoImage.png
 C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\AssemblyInfo.txt
 C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Settings.txt
 C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Johnny Punchfucker.dll
@@ -1665,3 +1664,27 @@ C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny 
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MingyBanner.xnb
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl4items.txt
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\SusanBanner.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl1environment.txt
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl1items.txt
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl2environment.txt
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl2items.txt
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl3environment.txt
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl3items.txt
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl4environment.txt
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl4items.txt
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\barrel.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\barrel1.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\bridgebackground.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\cake.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\fireshield.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\lava.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\mingusheet.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MingyBanner.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\sand2.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\sandripple.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\Susan.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\SusanBanner.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\waterbackground.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MenuImages\Hardcore.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MenuImages\Noob.xnb
+C:\Users\Balder\Documents\GitHub\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\Vitas.xnb

@@ -30,7 +30,9 @@ namespace Johnny_Punchfucker
         public static bool DEAD = false;
         float oldlife;
         public TimeSpan timer;
-
+        float rot = 0;
+        Vector2 bannerPos;
+        bool bannerOnce = true;
 
         public Vitas(Texture2D tex, Vector2 pos, bool AggroOnSpawn, float health, List<Player> playerList)
             : base(tex, pos, AggroOnSpawn, health)
@@ -50,6 +52,7 @@ namespace Johnny_Punchfucker
             fireshieldDelayTimer = TimeSpan.FromSeconds(fireshieldDelay);
             rnd = new Random();
             oldlife = life;
+            bannerPos = new Vector2(-600, 200);
 
         }
 
@@ -58,6 +61,7 @@ namespace Johnny_Punchfucker
 
             moving = true;
             animationBox.Y = 0;
+            UpdateBanner();
 
             if (timerGoing)
             {
@@ -89,10 +93,13 @@ namespace Johnny_Punchfucker
             }
             else if (stage == 1)
             {
-                if (targetintPos % 2 == 1 && once)
+                if (targetintPos % 2 == 1 && once){
                     targetPos = new Vector2(2800, pos.Y);
+                    rot = 0;
+                }
                 else if (once)
                 {
+                    rot = -0.3f;
                     int n = rnd.Next(0, playerList.Count);
                     targetPos = new Vector2(880, playerList[n].feetBox.Y - 30);
                     if (playerList[0].dead == true)
@@ -130,6 +137,7 @@ namespace Johnny_Punchfucker
             }
             else if (stage == 2)
             {
+                bannerOnce = false;
                 fireDelay = 1.3f;
                 if (oldlife > life)
                 {
@@ -144,6 +152,15 @@ namespace Johnny_Punchfucker
                     timerGoing = false;
                     stage = 3;
                 }
+
+
+                if (Vector2.Distance(pos, new Vector2(2800, 680)) > 20)
+                {
+                    velocity = new Vector2(2800, 680) - pos;
+                    velocity.Normalize();
+                    pos += 2 * velocity;
+                }
+                
 
 
 
@@ -207,7 +224,7 @@ namespace Johnny_Punchfucker
                     Rectangle rect = new Rectangle((int)pos.X - 80, (int)pos.Y - 80, 150, 150);
                     fireshieldFloor.Add(rect);
                     fireshieldDelayTimer = TimeSpan.FromSeconds(fireshieldDelay);
-                    if (fireshieldFloor.Count > 12)
+                    if (fireshieldFloor.Count > 14)
                         fireshieldFloor.RemoveAt(0);
                 }
             }
@@ -230,13 +247,13 @@ namespace Johnny_Punchfucker
 
             #region drawSusan
             if (stage == 2) //när bossen har lågt hp = röd och arg
-                spriteBatch.Draw(tex, pos, animationBox, color, 0f, offset, scale, SpriteEffects.FlipHorizontally, floatLayerNr);
+                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, color, 0, offset, scale, SpriteEffects.None, floatLayerNr);
             else if (stage != 2) // om bossen är normalfärgad. Inte död och inte lågt hp
-                spriteBatch.Draw(tex, pos, animationBox, Color.Red, 0f, offset, scale, SpriteEffects.FlipHorizontally, floatLayerNr);
+                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, Color.White, rot, offset, scale, SpriteEffects.None, floatLayerNr);
             else if (whiteNdead && DEAD) // om han är död blir han vit
-                spriteBatch.Draw(tex, pos, animationBox, new Color(255, 255, 255, 0), 0f, offset, scale, SpriteEffects.FlipHorizontally, floatLayerNr);
+                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, new Color(255, 255, 255, 0), 0f, offset, scale, SpriteEffects.None, floatLayerNr);
             else if (!whiteNdead && DEAD) //normalfärg mellan blinkningar
-                spriteBatch.Draw(tex, pos, animationBox, Color.Red, 0f, offset, scale, SpriteEffects.FlipHorizontally, floatLayerNr);
+                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, Color.Red, 0f, offset, scale, SpriteEffects.None, floatLayerNr);
             #endregion
 
 
@@ -256,17 +273,22 @@ namespace Johnny_Punchfucker
                     spriteBatch.Draw(TextureManager.fireshieldTex, r, new Rectangle(0, 0, TextureManager.fireshieldTex.Width, TextureManager.fireshieldTex.Height), new Color(255, 255, 255, 0.3f), 0f, Vector2.Zero, SpriteEffects.None, floatLayerNr);
                 spriteBatch.Draw(TextureManager.playerShadow, new Rectangle(r.X + 10, r.Y + 60, r.Width - 10, r.Height - 30), new Rectangle(0, 0, TextureManager.playerShadow.Width, TextureManager.playerShadow.Height), new Color(0, 0, 0, 120), 0f, Vector2.Zero, SpriteEffects.None, floatLayerNr - 0.01f);
             }
-
+            if (stage == 0 && canFire && bannerOnce) //draw banner
+                spriteBatch.Draw(TextureManager.susanBanner, bannerPos, null, Color.White, 0f, offset, scale, SpriteEffects.None, 1);
         }
 
-        private void SpawnShockwaves(GameTime gameTime)
+        private void UpdateBanner()
         {
+            if (stage == 0 && canFire)
+            {
+                if (bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 100)
+                    bannerPos.X += 10;
+                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 100 && bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 160)
+                    bannerPos.X += 0.2f;
+                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 160)
+                    bannerPos.X += 50;
 
-        }
-
-        public void ShockWaveDamage(List<Player> playerList)
-        {
-
+            }
         }
     }
 }
