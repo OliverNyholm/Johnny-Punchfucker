@@ -51,8 +51,9 @@ namespace Johnny_Punchfucker
             fireDelayTimer = TimeSpan.FromSeconds(fireDelay);
             fireshieldDelayTimer = TimeSpan.FromSeconds(fireshieldDelay);
             rnd = new Random();
+            life = 1;
             oldlife = life;
-            bannerPos = new Vector2(-600, 200);
+            bannerPos = new Vector2(-150, 200);
 
         }
 
@@ -245,16 +246,14 @@ namespace Johnny_Punchfucker
         {
             spriteBatch.Draw(TextureManager.playerShadow, new Vector2(pos.X + 5, pos.Y + ((height / 2) + 8)), null, new Color(0, 0, 0, 120), 0f, new Vector2(width / 2, height - height / 1.3f), 1, SpriteEffects.None, 0.1f);
 
-            #region drawSusan
+            
             if (stage == 2) //när bossen har lågt hp = röd och arg
-                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, color, 0, offset, scale, SpriteEffects.None, floatLayerNr);
-            else if (stage != 2) // om bossen är normalfärgad. Inte död och inte lågt hp
+                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, Color.Aqua, 0, offset, scale, SpriteEffects.None, floatLayerNr);
+            else if (stage != 2 && 1 == life) // om bossen är normalfärgad. Inte död och inte lågt hp
+                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, color, rot, offset, scale, SpriteEffects.None, floatLayerNr);
+            else 
                 spriteBatch.Draw(TextureManager.vitas, pos, animationBox, Color.White, rot, offset, scale, SpriteEffects.None, floatLayerNr);
-            else if (whiteNdead && DEAD) // om han är död blir han vit
-                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, new Color(255, 255, 255, 0), 0f, offset, scale, SpriteEffects.None, floatLayerNr);
-            else if (!whiteNdead && DEAD) //normalfärg mellan blinkningar
-                spriteBatch.Draw(TextureManager.vitas, pos, animationBox, Color.Red, 0f, offset, scale, SpriteEffects.None, floatLayerNr);
-            #endregion
+
 
 
 
@@ -274,7 +273,7 @@ namespace Johnny_Punchfucker
                 spriteBatch.Draw(TextureManager.playerShadow, new Rectangle(r.X + 10, r.Y + 60, r.Width - 10, r.Height - 30), new Rectangle(0, 0, TextureManager.playerShadow.Width, TextureManager.playerShadow.Height), new Color(0, 0, 0, 120), 0f, Vector2.Zero, SpriteEffects.None, floatLayerNr - 0.01f);
             }
             if (stage == 0 && canFire && bannerOnce) //draw banner
-                spriteBatch.Draw(TextureManager.susanBanner, bannerPos, null, Color.White, 0f, offset, scale, SpriteEffects.None, 1);
+                spriteBatch.Draw(TextureManager.vitasBanner, bannerPos, null, Color.White, 0f, offset, scale, SpriteEffects.None, 1);
         }
 
         private void UpdateBanner()
@@ -283,9 +282,9 @@ namespace Johnny_Punchfucker
             {
                 if (bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 100)
                     bannerPos.X += 10;
-                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 100 && bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 160)
-                    bannerPos.X += 0.2f;
-                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 160)
+                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 100 && bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 130)
+                    bannerPos.X += 0.3f;
+                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 130)
                     bannerPos.X += 50;
 
             }
