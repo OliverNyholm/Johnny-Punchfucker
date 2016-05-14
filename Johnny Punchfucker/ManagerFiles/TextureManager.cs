@@ -88,6 +88,7 @@ namespace Johnny_Punchfucker
         #region Enemy graphics
         public static Texture2D standardEnemyTex { get; private set; }
         public static Texture2D mingy { get; private set; }
+        public static Texture2D mingyBanner { get; private set; }
         public static Texture2D susan { get; private set; }
         public static Texture2D bulletTex { get; private set; }
         public static Texture2D bombTex { get; private set; }
@@ -183,6 +184,7 @@ namespace Johnny_Punchfucker
             #region Enemy graphics
             standardEnemyTex = Content.Load<Texture2D>(@"Images1080\standardenemy");
             mingy = Content.Load<Texture2D>(@"Images1080\mingusheet");
+            mingyBanner = Content.Load<Texture2D>(@"Images1080\MingyBanner");
             susan = Content.Load<Texture2D>(@"Images1080\Susan");
             bulletTex = Content.Load<Texture2D>(@"Images1080\bulletTex");
             bombTex = Content.Load<Texture2D>(@"Images1080\bombTex");

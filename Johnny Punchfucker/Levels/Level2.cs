@@ -109,7 +109,7 @@ namespace Johnny_Punchfucker
 
         public void BossFightStart(PlayerManager playerManager)
         {
-            if (playerManager.playerList[0].pos.X >= 2805)
+            if (playerManager.playerList[0].pos.X >= 2900)
             {
                 Mingy.bossEngaged = true;
             }

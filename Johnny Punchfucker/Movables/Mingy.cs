@@ -16,11 +16,13 @@ namespace Johnny_Punchfucker
         public bool firstWalk = true, dropTalk, shootTalk;
         Rectangle topLeft, bottomLeft, topRight, bottomRight;
         int dropSound, shootInt;
+        Vector2 bannerPos;
         TimeSpan dropTalkTimer, shootTalkTimer;
 
         public Mingy(Texture2D tex, Vector2 pos, bool AggroOnSpawn, float health)
             : base(tex, pos, AggroOnSpawn, health)
         {
+            bannerPos = new Vector2(400, 200);
             animationBox = new Rectangle(0, 0, 112, 174);
             width /= 9;
             height /= 9;
@@ -43,6 +45,7 @@ namespace Johnny_Punchfucker
             topRight = new Rectangle(ContentLoader.levelEndPosX + 2, 420, 50, 50);
             bottomRight = new Rectangle(ContentLoader.levelEndPosX - 10, 859, 50, 50);
 
+            UpdateBanner();
 
             if (dropTalk)
             {
@@ -99,14 +102,15 @@ namespace Johnny_Punchfucker
             {
                 spriteBatch.Draw(tex, pos, animationBox, color, 0f, offset, scale, spriteEffect, floatLayerNr);
             }
-            else if(life > 3 && !dead)
+            else if (life > 3 && !dead)
                 spriteBatch.Draw(tex, pos, animationBox, Color.White, 0f, offset, scale, spriteEffect, floatLayerNr);
             else if (whiteNdead && dead) // om han är död blir han vit
                 spriteBatch.Draw(tex, pos, animationBox, new Color(255, 255, 255, 0), 0f, offset, scale, spriteEffect, floatLayerNr);
             else if (!whiteNdead && dead)
                 spriteBatch.Draw(tex, pos, animationBox, Color.White, 0f, offset, scale, spriteEffect, floatLayerNr);
-            
 
+            if (bossEngaged && firstWalk)
+                spriteBatch.Draw(TextureManager.mingyBanner, bannerPos, null, Color.White, 0f, offset, scale, SpriteEffects.None, 1);
 
             //spriteBatch.Draw(tex, boundingBox, null, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 0.9f);
             //spriteBatch.Draw(tex, feetBox, null, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 0.9f);
@@ -223,16 +227,16 @@ namespace Johnny_Punchfucker
                         AudioManager.Mingy_TheresGonnaBeAnExplosion.Play();
                         dropTalkTimer = TimeSpan.FromMilliseconds(AudioManager.Mingy_TheresGonnaBeAnExplosion.Duration.TotalMilliseconds);
                         break;
-                        
+
                     case 3:
                         AudioManager.Mingy_IAmAGamechanger.Play();
                         dropTalkTimer = TimeSpan.FromMilliseconds(AudioManager.Mingy_IAmAGamechanger.Duration.TotalMilliseconds);
-                        break;   
+                        break;
 
                     case 4:
                         AudioManager.Mingy_ooohMingyMongoDoId.Play();
                         dropTalkTimer = TimeSpan.FromMilliseconds(AudioManager.Mingy_ooohMingyMongoDoId.Duration.TotalMilliseconds);
-                        break;   
+                        break;
                 }
             }
         }
@@ -260,6 +264,19 @@ namespace Johnny_Punchfucker
                         shootTalkTimer = TimeSpan.FromMilliseconds(AudioManager.Mingy_Myngux2Moh.Duration.TotalMilliseconds);
                         break;
                 }
+            }
+        }
+
+        private void UpdateBanner()
+        {
+            if (bossEngaged && firstWalk)
+            {
+                if (bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 100)
+                    bannerPos.X += 10;
+                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 100 && bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 160)
+                    bannerPos.X += 0.2f;
+                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 160)
+                    bannerPos.X += 50;
             }
         }
     }

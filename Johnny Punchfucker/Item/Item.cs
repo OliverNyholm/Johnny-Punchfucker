@@ -21,15 +21,14 @@ namespace Johnny_Punchfucker
         }
 
         public virtual void Update(GameTime gameTime)
-        {
-            
+        {            
             FloatLayerCalculator();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(tex, pos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, floatLayerNr);
-            spriteBatch.Draw(tex, boundingBox, null, Color.Black, 0, Vector2.Zero, SpriteEffects.None, 0.9f);
+            //spriteBatch.Draw(tex, boundingBox, null, Color.Black, 0, Vector2.Zero, SpriteEffects.None, 0.9f);
         }
 
         public void FloatLayerCalculator()
