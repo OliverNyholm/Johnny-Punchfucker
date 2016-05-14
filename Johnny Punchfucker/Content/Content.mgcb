@@ -1240,3 +1240,18 @@
 /processorParam:TextureFormat=Color
 /build:Images1080/MingyBanner.png
 
+#begin Levels/lvl4items.txt
+/copy:Levels/lvl4items.txt
+
+#begin Images1080/SusanBanner.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Images1080/SusanBanner.png
+

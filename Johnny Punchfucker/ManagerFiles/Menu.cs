@@ -37,6 +37,7 @@ namespace Johnny_Punchfucker
             {
                 if (menuState != MenuState.HowToPlay)
                     AudioManager.MenuMove.Play();
+
                 menuNumber--;
                 if (menuNumber == 0 && menuState == MenuState.Pause) // om man trycker upp vid toppen går man till botten
                 {

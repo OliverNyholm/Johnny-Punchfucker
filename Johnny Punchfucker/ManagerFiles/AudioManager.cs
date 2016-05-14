@@ -18,6 +18,7 @@ namespace Johnny_Punchfucker
 
         #region Johnnys voice
         public static SoundEffect Johnny_Aouch { get; private set; }
+        public static SoundEffectInstance Johnny_Aouch_SEI { get; private set; }
         public static SoundEffect Johnny_cheater { get; private set; }
         public static SoundEffect Johnny_Eh { get; private set; }
         public static SoundEffect Johnny_FasterThenTheSpeedOfFight { get; private set; }

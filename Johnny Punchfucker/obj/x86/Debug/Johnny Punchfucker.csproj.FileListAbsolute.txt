@@ -1663,3 +1663,5 @@ C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny 
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MenuImages\Hardcore.xnb
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MenuImages\Noob.xnb
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MingyBanner.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl4items.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\SusanBanner.xnb

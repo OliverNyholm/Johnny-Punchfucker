@@ -18,7 +18,7 @@ namespace Johnny_Punchfucker
         public Level4(ContentManager Content, PlayerManager playerManager, EnemyManager enemyManager)
             : base(Content, playerManager, enemyManager)
         {
-            contentLoader = new ContentLoader(Content, @"Content/Levels/lvl4environment.txt", @"Content/Levels/lvl3items.txt");
+            contentLoader = new ContentLoader(Content, @"Content/Levels/lvl4environment.txt", @"Content/Levels/lvl4items.txt");
         }
 
         public void Update(GameTime gameTime)
@@ -53,7 +53,7 @@ namespace Johnny_Punchfucker
 
         private void SpawnBoss()
         {
-            enemyManager.enemyList.Add(new Susan(TextureManager.susan, new Vector2(2300, -100), false, 2, playerManager.playerList, enemyManager));
+            enemyManager.enemyList.Add(new Susan(TextureManager.susan, new Vector2(2300, -100), false, 4, playerManager.playerList, enemyManager));
             bossSpawned = true;
         }
 

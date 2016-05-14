@@ -90,6 +90,7 @@ namespace Johnny_Punchfucker
         public static Texture2D mingy { get; private set; }
         public static Texture2D mingyBanner { get; private set; }
         public static Texture2D susan { get; private set; }
+        public static Texture2D susanBanner { get; private set; }
         public static Texture2D bulletTex { get; private set; }
         public static Texture2D bombTex { get; private set; }
         public static Texture2D shockwaveTex { get; private set; }
@@ -186,6 +187,7 @@ namespace Johnny_Punchfucker
             mingy = Content.Load<Texture2D>(@"Images1080\mingusheet");
             mingyBanner = Content.Load<Texture2D>(@"Images1080\MingyBanner");
             susan = Content.Load<Texture2D>(@"Images1080\Susan");
+            susanBanner = Content.Load<Texture2D>(@"Images1080\SusanBanner");
             bulletTex = Content.Load<Texture2D>(@"Images1080\bulletTex");
             bombTex = Content.Load<Texture2D>(@"Images1080\bombTex");
             shockwaveTex = Content.Load<Texture2D>(@"Images1080\lava");

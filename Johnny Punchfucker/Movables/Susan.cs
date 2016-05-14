@@ -14,12 +14,12 @@ namespace Johnny_Punchfucker
     {
         List<Player> playerList;
         EnemyManager enemyManager;
-        public bool bossEngaged, GotNr, hitByShockwave, shootUp, initShockwaves;
+        public bool GotNr, hitByShockwave, shootUp, initShockwaves;
         public static bool dead, enemySpawned;
         double shockwaveSpawnTime, animationTime;
         int shockwaveSpawn, phase, bulletCount, previousHealth, frame;
         Rectangle shockwaveRectangle, shockwaveAnimation;
-        Vector2 shootPos, evadePos, shockwavePos;
+        Vector2 shootPos, evadePos, shockwavePos, bannerPos;
 
 
         public Susan(Texture2D tex, Vector2 pos, bool AggroOnSpawn, float health, List<Player> playerList, EnemyManager enemyManager)
@@ -27,6 +27,7 @@ namespace Johnny_Punchfucker
         {
             this.playerList = playerList;
             this.enemyManager = enemyManager;
+            bannerPos = new Vector2(-600, 200);
             animationBox = new Rectangle(0, 0, 112, 174);
             spriteEffect = SpriteEffects.FlipHorizontally;
             phase = 0;
@@ -38,7 +39,6 @@ namespace Johnny_Punchfucker
             enemySpeed = 2.25f;
             scale = 1.2f;
             offset = new Vector2(width / 2, height / 2);
-            bossEngaged = false;
             enemySpawned = true;
 
             shockwaveAnimation = new Rectangle(0, 0, 1920, 123);
@@ -53,6 +53,8 @@ namespace Johnny_Punchfucker
             pos += velocity;
             animationBox.Y = 0;
 
+            UpdateBanner();
+
             if (initShockwaves && !dead)
                 SpawnShockwaves(gameTime);
 
@@ -64,7 +66,7 @@ namespace Johnny_Punchfucker
             if (!hitByShockwave)
                 ShockWaveDamage(playerList);
 
-            if (phase != 0)
+            if (phase != 0 || phase != 5)
                 boundingBox = new Rectangle((int)pos.X - width / 2, (int)pos.Y - height / 2, width - 15, height - 10);
             else
                 boundingBox = new Rectangle((int)pos.X - width / 2, (int)pos.Y - height / 2, 0, 0);
@@ -98,6 +100,10 @@ namespace Johnny_Punchfucker
                 if (shockwaveSpawnTime >= 1000)
                     spriteBatch.Draw(TextureManager.shockwave, shockwaveRectangle, shockwaveAnimation, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 0.05f);
             }
+
+
+            if (phase == 0) //draw banner
+                spriteBatch.Draw(TextureManager.susanBanner, bannerPos, null, Color.White, 0f, offset, scale, SpriteEffects.None, 1);
         }
 
         private void BossFight(GameTime gameTime, List<Player> playerList, EnemyManager enemyManager)
@@ -126,11 +132,11 @@ namespace Johnny_Punchfucker
             moving = true;
             if (pos.Y < 502 && pos.Y > 675)
             {
-                pos.Y += 4;
+                pos.Y += 1.6f;
                 floatLayerNr = 0.4f;
             }
             if (pos.Y < 675)
-                pos.Y += 4;
+                pos.Y += 1.6f;
             else
                 phase = 1;
         }
@@ -317,6 +323,19 @@ namespace Johnny_Punchfucker
                 animationTime = 100;
                 frame++;
                 shockwaveAnimation.Y = (frame % 3) * 123;
+            }
+        }
+
+        private void UpdateBanner()
+        {
+            if (phase == 0)
+            {
+                if (bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 100)
+                    bannerPos.X += 10;
+                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 100 && bannerPos.X < (ContentLoader.levelEndPosX - 1938) + 160)
+                    bannerPos.X += 0.2f;
+                else if (bannerPos.X > (ContentLoader.levelEndPosX - 1938) + 160)
+                    bannerPos.X += 50;
             }
         }
     }

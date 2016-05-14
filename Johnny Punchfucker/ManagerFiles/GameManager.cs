@@ -21,7 +21,7 @@ namespace Johnny_Punchfucker
         Level2 level2;
         Level3 level3;
         Level4 level4;
-        public static int levelNr = 2;
+        public static int levelNr = 1;
         public int firstDigitSeconds, secondDigitSeconds, firstDigitMinutes, secondDigitMinutes, firstDigitHours, secondDigitHours;
         public double time, digitSeconds;
         public int intro = 0; // vilket intro det är
@@ -48,7 +48,7 @@ namespace Johnny_Punchfucker
             playerManager = new PlayerManager();
             enemyManager = new EnemyManager(GraphicsDevice);
             InitializeLevels(Content);
-            gameState = GameState.Play;
+            gameState = GameState.Menu;
         }
 
         public void Update(GameTime gameTime, GraphicsDeviceArcade GraphicsDevice, ContentManager Content)
