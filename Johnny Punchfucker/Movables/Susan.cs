@@ -53,11 +53,13 @@ namespace Johnny_Punchfucker
             pos += velocity;
             animationBox.Y = 0;
 
-            if (initShockwaves)
+            if (initShockwaves && !dead)
                 SpawnShockwaves(gameTime);
 
-
-            BossFight(gameTime, playerList, enemyManager);
+            if (life <= 0) 
+                dead = true;
+            if (!dead) //Controls the bossfight if boss isn't dead
+                BossFight(gameTime, playerList, enemyManager);                
 
             if (!hitByShockwave)
                 ShockWaveDamage(playerList);
@@ -89,7 +91,7 @@ namespace Johnny_Punchfucker
                 spriteBatch.Draw(tex, pos, animationBox, Color.White, 0f, offset, scale, spriteEffect, floatLayerNr);
             #endregion
 
-            if (initShockwaves) //ritar ut shockwaves
+            if (initShockwaves && !dead) //ritar ut shockwaves
             {
                 if (shockwaveSpawnTime < 1000)
                     spriteBatch.Draw(TextureManager.sandripple, new Rectangle((int)shockwavePos.X, (int)shockwavePos.Y + 123 * shockwaveSpawn, 1920, 123), shockwaveAnimation, Color.White, 0, Vector2.Zero, SpriteEffects.None, 0.05f);

@@ -23,7 +23,9 @@ namespace Johnny_Punchfucker
 
         public void Update(GameTime gameTime)
         {
-            //nextLevelBox = new Rectangle(2537, (int)502, 40, 300); //tar man i denna går man över till level 2
+            if (Susan.dead)
+                nextLevelBox = new Rectangle(2537, (int)502, 40, 300); //tar man i denna vinner man spelet
+
             contentLoader.Update(gameTime);
             CameraStopWhenEnemySpawn(playerManager, gameTime);
 
@@ -35,12 +37,11 @@ namespace Johnny_Punchfucker
             if (!Susan.enemySpawned && enemyManager.enemyList.Count > 0)
                 SpawnEnemies(enemyManager.enemyList);
 
-            //Om spelaren går i mål så kommer man att ha klarat av level 1 och level 2 ska börja
+            //Om spelaren går i mål så kommer man att ha klarat av spelet
             for (int i = 0; i < playerManager.playerList.Count; i++)
                 if (playerManager.playerList[i].boundingBox.Intersects(nextLevelBox))
                 {
                     GameManager.completed = true;
-                    GameManager.levelNr++;
                 }
         }
 
@@ -52,7 +53,7 @@ namespace Johnny_Punchfucker
 
         private void SpawnBoss()
         {
-            enemyManager.enemyList.Add(new Susan(TextureManager.susan, new Vector2(2300, -100), false, 4, playerManager.playerList, enemyManager));
+            enemyManager.enemyList.Add(new Susan(TextureManager.susan, new Vector2(2300, -100), false, 2, playerManager.playerList, enemyManager));
             bossSpawned = true;
         }
 

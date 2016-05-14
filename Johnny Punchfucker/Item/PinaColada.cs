@@ -20,7 +20,7 @@ namespace Johnny_Punchfucker
 
         public override void Update(GameTime gameTime)
         {
-            boundingBox = new Rectangle((int)pos.X, (int)pos.Y + 20, (int)(width / 1.5f), (int)(height / 2f));
+            boundingBox = new Rectangle((int)pos.X, (int)pos.Y + 40, (int)(width / 1.5f), (int)(height / 2f));
             base.Update(gameTime);
         }
 
