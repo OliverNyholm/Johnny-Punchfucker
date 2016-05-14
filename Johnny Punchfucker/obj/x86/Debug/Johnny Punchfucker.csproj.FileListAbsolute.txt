@@ -24,7 +24,6 @@ c:\users\oliver\documents\visual studio 2013\Projects\Johnny Punchfucker\Johnny 
 c:\users\oliver\documents\visual studio 2013\Projects\Johnny Punchfucker\Johnny Punchfucker\obj\x86\Debug\Johnny Punchfucker.csprojResolveAssemblyReference.cache
 c:\users\oliver\documents\visual studio 2013\Projects\Johnny Punchfucker\Johnny Punchfucker\obj\x86\Debug\Johnny Punchfucker.dll
 c:\users\oliver\documents\visual studio 2013\Projects\Johnny Punchfucker\Johnny Punchfucker\obj\x86\Debug\Johnny Punchfucker.pdb
-C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\PreviewData\GamePreviewInfoImage.png
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\AssemblyInfo.txt
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Settings.txt
 C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Johnny Punchfucker.dll
@@ -1645,3 +1644,21 @@ C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Joh
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\sand2.xnb
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\fireshield.xnb
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl3items.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl1environment.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl1items.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl2environment.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl2items.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl3environment.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl3items.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl4environment.txt
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\barrel.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\barrel1.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\cake.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\fireshield.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\lava.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\mingusheet.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\sand2.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\sandripple.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\Susan.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MenuImages\Hardcore.xnb
+C:\Users\Oliver\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\MenuImages\Noob.xnb

@@ -14,12 +14,11 @@ namespace Johnny_Punchfucker
     class Level4 : Level
     {
         bool bossSpawned;
-        int waveNr;
 
         public Level4(ContentManager Content, PlayerManager playerManager, EnemyManager enemyManager)
             : base(Content, playerManager, enemyManager)
         {
-            contentLoader = new ContentLoader(Content, @"Content/Levels/lvl4environment.txt", @"Content/Levels/lvl1items.txt");
+            contentLoader = new ContentLoader(Content, @"Content/Levels/lvl4environment.txt", @"Content/Levels/lvl3items.txt");
         }
 
         public void Update(GameTime gameTime)
@@ -40,7 +39,7 @@ namespace Johnny_Punchfucker
             for (int i = 0; i < playerManager.playerList.Count; i++)
                 if (playerManager.playerList[i].boundingBox.Intersects(nextLevelBox))
                 {
-                    contentLoader.NextLevel(playerManager, enemyManager, 1200);
+                    GameManager.completed = true;
                     GameManager.levelNr++;
                 }
         }

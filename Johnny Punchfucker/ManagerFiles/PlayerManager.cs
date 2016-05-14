@@ -11,7 +11,7 @@ namespace Johnny_Punchfucker
     class PlayerManager
     {
         public List<Player> playerList = new List<Player>();
-        public static int players = 2;
+        public static int players = 1;
         public ParticleExplosion particleExplosion;
         double gameOverDelay;
         public bool deathSound1, deathSound2;
@@ -74,7 +74,7 @@ namespace Johnny_Punchfucker
                     gameOverDelay += gameTime.ElapsedGameTime.TotalMilliseconds;
 
                     if (gameOverDelay >= 2000)
-                        ContentLoader.end = true;
+                        GameManager.failed = true;
                 }
             }
             else if (players == 2)
@@ -84,7 +84,7 @@ namespace Johnny_Punchfucker
                     gameOverDelay += gameTime.ElapsedGameTime.TotalMilliseconds;
 
                     if (gameOverDelay >= 2000)
-                        ContentLoader.end = true;
+                        GameManager.failed = true;
                 }
             }
             #endregion

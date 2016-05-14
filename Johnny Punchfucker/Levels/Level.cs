@@ -17,6 +17,7 @@ namespace Johnny_Punchfucker
         protected PlayerManager playerManager;
         protected EnemyManager enemyManager;
         public Rectangle nextLevelBox;
+        public int nextLevelPosX;
 
         public Level(ContentManager Content, PlayerManager playerManager, EnemyManager enemyManager)
         {

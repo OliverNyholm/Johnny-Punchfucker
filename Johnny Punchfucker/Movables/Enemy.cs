@@ -73,7 +73,7 @@ namespace Johnny_Punchfucker
                 spriteBatch.Draw(tex, pos, animationBox, Color.White, 0f, offset, scale, spriteEffect, floatLayerNr);
             else if (enraged)
                 spriteBatch.Draw(tex, pos, animationBox, color, 0f, offset, scale, spriteEffect, floatLayerNr);
-            spriteBatch.Draw(tex, feetBox, null, Color.Red, 0f, offset, spriteEffect, 0.8f);
+            //spriteBatch.Draw(tex, feetBox, null, Color.Red, 0f, offset, spriteEffect, 0.8f);
             //spriteBatch.Draw(tex, punchBox, null, Color.Red, 0f, offset, spriteEffect, 0.8f);
             //spriteBatch.Draw(tex, boundingBox, null, Color.Red, 0f, offset, spriteEffect, 0.8f);
 
@@ -266,7 +266,7 @@ namespace Johnny_Punchfucker
                         {
                             fightingCooldown = 0; //3 rader ner = resettar fiendens slag
                             fightFrame = 0;
-                            punchBox = new Rectangle((int)pos.X - 44, (int)pos.Y - 65, 0, 0);
+                            punchBox = new Rectangle((int)pos.X - 4000, (int)pos.Y - 6500, 0, 0);
                         }
                     }
                 }
@@ -276,7 +276,7 @@ namespace Johnny_Punchfucker
                     {
                         fightingCooldown = 0; //3 rader ner = resettar fiendens slag
                         fightFrame = 0;
-                        punchBox = new Rectangle((int)pos.X - 44, (int)pos.Y - 65, 0, 0);
+                        punchBox = new Rectangle((int)pos.X - 4000, (int)pos.Y - 6500, 0, 0);
                     }
                 }
 
@@ -288,7 +288,7 @@ namespace Johnny_Punchfucker
                 hasHit = false;
                 fightFrame = 0;
                 fightingCooldown = -200;
-                punchBox = new Rectangle((int)pos.X - 44, (int)pos.Y - 65, 0, 0); //resettar slaget hitbox ovanför gubben igen
+                punchBox = new Rectangle((int)pos.X - 4000, (int)pos.Y - 6500, 0, 0); //resettar slaget hitbox ovanför gubben igen
             }
         }
 
@@ -299,6 +299,7 @@ namespace Johnny_Punchfucker
                 dead = true;
                 animationBox.Y = 957;
                 animationBox.X = 0;
+                animationBox.Height = height - 2;
                 animationBox.Width = 187;
                 deathTimer1 += gameTime.ElapsedGameTime.TotalMilliseconds;
                 boundingBox = new Rectangle((int)pos.X - width / 2, (int)pos.Y - height / 2, 0, 0);

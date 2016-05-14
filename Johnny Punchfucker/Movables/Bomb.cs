@@ -73,7 +73,7 @@ namespace Johnny_Punchfucker
 
             spriteBatch.Draw(TextureManager.playerShadow, new Vector2(pos.X + 75, pos.Y + 112), null, new Color(0, 0, 0, 120), 0f, new Vector2(94 / 2, 31 / 2), 0.7f, SpriteEffects.None, 0.1f);
 
-            spriteBatch.Draw(tex, boundingBox, null, Color.Black, 0, Vector2.Zero, SpriteEffects.None, 0.9f);
+            //spriteBatch.Draw(tex, boundingBox, null, Color.Black, 0, Vector2.Zero, SpriteEffects.None, 0.9f);
         }
     }
 }

@@ -13,13 +13,13 @@ namespace Johnny_Punchfucker
 {
     class Level1 : Level
     {
-        bool spawn2, spawn3;
-        int waveNr;
-
+        private bool spawn2, spawn3;
+        private int waveNr;
         public Level1(ContentManager Content, PlayerManager playerManager, EnemyManager enemyManager) : base(Content, playerManager, enemyManager)
         {
             contentLoader = new ContentLoader(Content, @"Content/Levels/lvl1environment.txt", @"Content/Levels/lvl1items.txt");
             SpawnEnemy1(enemyManager.enemyList);
+            nextLevelPosX = 1200;
         }
 
         public void Update(GameTime gameTime)

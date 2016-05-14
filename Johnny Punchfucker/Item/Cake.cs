@@ -14,11 +14,12 @@ namespace Johnny_Punchfucker
     {
         public Cake(Texture2D tex, Vector2 pos) : base(tex, pos)
         {
-
+            boundingBox = new Rectangle((int)pos.X + 9, (int)pos.Y + 60, (int)(width / 1.5f), (int)(height / 2f));
         }
 
         public override void Update(GameTime gameTime)
         {
+
             base.Update(gameTime);
         }
 

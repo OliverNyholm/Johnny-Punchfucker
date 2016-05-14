@@ -163,7 +163,7 @@ namespace Johnny_Punchfucker
             //spriteBatch.Draw(tex, feetBox, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             //spriteBatch.Draw(tex, playerRightBox, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             //spriteBatch.Draw(tex, playerLeftBox, null, Color.White, 0, Vector2.Zero, SpriteEffects.None, 1);
-            spriteBatch.Draw(tex, punchBox, null, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 1);
+            //spriteBatch.Draw(tex, punchBox, null, Color.Blue, 0, Vector2.Zero, SpriteEffects.None, 1);
             //spriteBatch.Draw(tex, boundingBox, null, Color.Red, 0, Vector2.Zero, SpriteEffects.None, 1);
             //spriteBatch.Draw(tex, blockBox, null, Color.Aquamarine, 0, Vector2.Zero, SpriteEffects.None, 1);
         }
@@ -279,7 +279,7 @@ namespace Johnny_Punchfucker
                     }
                 }
 
-                if (InputHandler.IsButtonDown(playerIndex, PlayerInput.Green) && onGround && !block && canJump) // här hoppar man
+                if (InputHandler.IsButtonDown(playerIndex, PlayerInput.Yellow) && onGround && !block && canJump) // här hoppar man
                 {
                     posJump.Y = pos.Y; //när man hoppar svaras punkten man hoppade från i y-led. Man landar på den punkten i y-led sen
                     speed.Y = -3.2f;
@@ -306,7 +306,7 @@ namespace Johnny_Punchfucker
                 fightingCooldown += gameTime.ElapsedGameTime.TotalMilliseconds;
             }
             #region StandardHit
-            if (fightingCooldown >= 300 && InputHandler.IsButtonDown(playerIndex, PlayerInput.Blue) && !fight && onGround && !block)
+            if (fightingCooldown >= 300 && InputHandler.IsButtonDown(playerIndex, PlayerInput.Red) && !fight && onGround && !block)
             {
                 frameTime = 120;
                 walkFrame = 0;
@@ -339,7 +339,7 @@ namespace Johnny_Punchfucker
             #endregion
 
             #region Kick
-            if (fightingCooldown >= 300 && InputHandler.IsButtonDown(playerIndex, PlayerInput.Red) && !fight && onGround && !block)
+            if (fightingCooldown >= 300 && InputHandler.IsButtonDown(playerIndex, PlayerInput.Blue) && !fight && onGround && !block)
             {
                 frameTime = 120;
                 walkFrame = 0;
@@ -380,7 +380,7 @@ namespace Johnny_Punchfucker
 
         public void Block(GameTime gameTime)
         {
-            if (fightingCooldown >= 150 && InputHandler.IsButtonDown(playerIndex, PlayerInput.Yellow) && !fight && !block && onGround)
+            if (fightingCooldown >= 150 && InputHandler.IsButtonDown(playerIndex, PlayerInput.Green) && !fight && !block && onGround)
             {
                 block = true;
                 moving = false;

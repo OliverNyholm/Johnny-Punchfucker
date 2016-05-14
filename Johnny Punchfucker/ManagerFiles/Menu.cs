@@ -18,7 +18,7 @@ namespace Johnny_Punchfucker
 
         public enum MenuState
         {
-            MainMenu, NewGame, Options, HowToPlay, Pause, PauseOptions, PauseQuit
+            MainMenu, NewGame, Difficulty, Options, HowToPlay, Pause, PauseOptions, PauseQuit
         }
         public MenuState menuState;
         public Menu(ContentManager Content)
@@ -35,13 +35,14 @@ namespace Johnny_Punchfucker
             #region Key Up
             if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Up, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Up, false)) // väljer vilken "knapp" man vill till i menyn
             {
-                AudioManager.MenuMove.Play();
+                if (menuState != MenuState.HowToPlay)
+                    AudioManager.MenuMove.Play();
                 menuNumber--;
-                if (menuNumber == 0 && menuState == MenuState.MainMenu || menuNumber == 0 && menuState == MenuState.Pause) // om man trycker upp vid toppen går man till botten
+                if (menuNumber == 0 && menuState == MenuState.Pause) // om man trycker upp vid toppen går man till botten
                 {
                     menuNumber = 3;
                 }
-                if (menuNumber == 0 && (menuState == MenuState.NewGame || menuState == MenuState.PauseQuit))
+                if (menuNumber == 0 && (menuState == MenuState.NewGame || menuState == MenuState.MainMenu || menuState == MenuState.Difficulty || menuState == MenuState.PauseQuit))
                 {
                     menuNumber = 2;
                 }
@@ -54,14 +55,15 @@ namespace Johnny_Punchfucker
             #region Key Down
             if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Down, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Down, false))
             {
-                AudioManager.MenuMove.Play();
+                if (menuState != MenuState.HowToPlay)
+                    AudioManager.MenuMove.Play();
 
                 menuNumber++;
-                if (menuNumber == 4 && menuState == MenuState.MainMenu || menuNumber == 4 && menuState == MenuState.Pause)
+                if (menuNumber == 4 && menuState == MenuState.Pause)
                 {
                     menuNumber = 1;
                 }
-                if (menuNumber == 3 && (menuState == MenuState.NewGame || menuState == MenuState.PauseQuit))
+                if (menuNumber == 3 && (menuState == MenuState.NewGame || menuState == MenuState.MainMenu || menuState == MenuState.Difficulty || menuState == MenuState.PauseQuit))
                 {
                     menuNumber = 1;
                 }
@@ -78,17 +80,17 @@ namespace Johnny_Punchfucker
             {
                 #region Main Menu
                 case MenuState.MainMenu:
-                    if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))) // om man är på 1 som är markerad röd går man dit
+                    if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))) // om man är på 1 som är markerad röd går man dit
                     {
                         menuState = MenuState.NewGame;
                         menuNumber = 1;
                     }
-                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         menuState = MenuState.Options;
                         menuNumber = 1;
                     }
-                    if (menuNumber == 3 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 3 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         quit = true;
                     }
@@ -96,20 +98,20 @@ namespace Johnny_Punchfucker
                 #endregion
                 #region NewGame
                 case MenuState.NewGame:
-                    if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         PlayerManager.players = 1;
-                        play = true;
+                        menuState = MenuState.Difficulty;
                         menuNumber = 1;
                     }
-                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         PlayerManager.players = 2;
-                        play = true;
+                        menuState = MenuState.Difficulty;
                         menuNumber = 1;
 
                     }
-                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))
+                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
                     {
                         AudioManager.MenuBack.Play();
 
@@ -118,21 +120,42 @@ namespace Johnny_Punchfucker
                     }
                     break;
                 #endregion
+                #region Difficilty
+                case MenuState.Difficulty:
+                    if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
+                    {
+                        GameManager.hardcore = false;
+                        play = true;
+                    }
+                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
+                    {
+                        GameManager.hardcore = true;
+                        play = true;
+                    }
+                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
+                    {
+                        AudioManager.MenuBack.Play();
+
+                        menuState = MenuState.NewGame;
+                        menuNumber = 1;
+                    }
+                    break;
+                #endregion
                 #region Options
                 case MenuState.Options:
-                    if (menuNumber == 1 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))) && AudioManager.sound)
+                    if (menuNumber == 1 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))) && AudioManager.sound)
                     {
                         AudioManager.sound = false;
                     }
-                    else if (menuNumber == 1 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))) && !AudioManager.sound)
+                    else if (menuNumber == 1 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))) && !AudioManager.sound)
                     {
                         AudioManager.sound = true;
                     }
-                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         menuState = MenuState.HowToPlay;
                     }
-                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))
+                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
                     {
                         AudioManager.MenuBack.Play();
 
@@ -144,7 +167,7 @@ namespace Johnny_Punchfucker
                 #endregion
                 #region How To Play
                 case MenuState.HowToPlay:
-                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))
+                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
                     {
                         AudioManager.MenuBack.Play();
 
@@ -156,16 +179,16 @@ namespace Johnny_Punchfucker
                 #endregion
                 #region Pause
                 case MenuState.Pause:
-                    if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         play = true;
                     }
-                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         menuState = MenuState.PauseOptions;
                         menuNumber = 1;
                     }
-                    if (menuNumber == 3 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 3 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         menuNumber = 1;
                         menuState = MenuState.PauseQuit;
@@ -174,27 +197,27 @@ namespace Johnny_Punchfucker
                 #endregion
                 #region Pause Options
                 case MenuState.PauseOptions:
-                    if (menuNumber == 1 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))) && AudioManager.sound)
+                    if (menuNumber == 1 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))) && AudioManager.sound)
                     {
                         AudioManager.sound = false;
                     }
-                    else if (menuNumber == 1 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))) && !AudioManager.sound)
+                    else if (menuNumber == 1 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))) && !AudioManager.sound)
                     {
                         AudioManager.sound = true;
                         menuNumber = 1;
                     }
-                    if ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)) && !howTo)
+                    if ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)) && !howTo)
                     {
                         AudioManager.MenuBack.Play();
                         menuState = MenuState.Pause;
                         menuNumber = 2;
                     }
 
-                    if (menuNumber == 2 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))) && !howTo)
+                    if (menuNumber == 2 && ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))) && !howTo)
                     {
                         howTo = true;
                     }
-                    if ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)) && howTo)
+                    if ((InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)) && howTo)
                     {
                         AudioManager.MenuBack.Play();
 
@@ -207,17 +230,17 @@ namespace Johnny_Punchfucker
                 #endregion
                 #region Pause Quit
                 case MenuState.PauseQuit:
-                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         menuState = MenuState.MainMenu;
-
+                        menuNumber = 0;
                     }
-                    else if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false)))
+                    else if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         menuState = MenuState.Pause;
                         menuNumber = 3;
                     }
-                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))
+                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
                     {
                         menuState = MenuState.Pause;
                         menuNumber = 3;
@@ -255,13 +278,6 @@ namespace Johnny_Punchfucker
                     }
                     else
                         spriteBatch.Draw(TextureManager.menuOptions, new Vector2(450, 487), Color.Yellow);
-
-                    if (menuNumber == 3)
-                    {
-                        spriteBatch.Draw(TextureManager.menuQuit, new Vector2(450, 675), Color.Red);
-                    }
-                    else
-                        spriteBatch.Draw(TextureManager.menuQuit, new Vector2(450, 675), Color.Yellow);
                     break;
                 #endregion
                 #region New Game
@@ -278,6 +294,22 @@ namespace Johnny_Punchfucker
                     }
                     else
                         spriteBatch.Draw(TextureManager.menuTwoPlayer, new Vector2(450, 487), Color.Yellow);
+                    break;
+                #endregion
+                #region Difficulty
+                case MenuState.Difficulty:
+                    if (menuNumber == 1)
+                    {
+                        spriteBatch.Draw(TextureManager.noob, new Vector2(450, 300), Color.Red);
+                    }
+                    else
+                        spriteBatch.Draw(TextureManager.noob, new Vector2(450, 300), Color.Yellow);
+                    if (menuNumber == 2)
+                    {
+                        spriteBatch.Draw(TextureManager.hardcore, new Vector2(450, 550), Color.Red);
+                    }
+                    else
+                        spriteBatch.Draw(TextureManager.hardcore, new Vector2(450, 550), Color.Yellow);
                     break;
                 #endregion
                 #region Options

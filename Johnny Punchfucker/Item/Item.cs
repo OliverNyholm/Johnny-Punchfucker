@@ -17,12 +17,12 @@ namespace Johnny_Punchfucker
         public Item(Texture2D tex, Vector2 pos)
             : base(tex, pos)
         {
-
+            boundingBox = new Rectangle((int)pos.X + 9, (int)pos.Y + 40, (int)(width / 1.5f), (int)(height / 2f));
         }
 
         public virtual void Update(GameTime gameTime)
         {
-            boundingBox = new Rectangle((int)pos.X + 9, (int)pos.Y + 40, (int)(width / 1.5f), (int)(height / 2f));
+            
             FloatLayerCalculator();
         }
 

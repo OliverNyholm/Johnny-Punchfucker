@@ -85,12 +85,11 @@
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
-    <Content Include="Content\PreviewData\GamePreviewInfoImage.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="AssemblyInfo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\PreviewData\GameBanner.png.png" />
+    <Content Include="Content\PreviewData\GamePreviewInfoImage.png.png" />
     <Content Include="Settings.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

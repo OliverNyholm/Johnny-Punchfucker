@@ -20,6 +20,7 @@ namespace Johnny_Punchfucker
         {
             contentLoader = new ContentLoader(Content, @"Content/Levels/lvl2environment.txt", @"Content/Levels/lvl2items.txt");
             SpawnBoss();
+            nextLevelPosX = 1200;
         }
 
         public void Update(GameTime gameTime)

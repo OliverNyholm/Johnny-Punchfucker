@@ -18,7 +18,6 @@ namespace Johnny_Punchfucker
         List<Environment> enviromentList = new List<Environment>();
         public List<Item> itemList = new List<Item>();
         public static int levelEndPosX;
-        public static bool end;
         public List<Barrel> barrels = new List<Barrel>();
 
         public ContentLoader(ContentManager Content, string environemntTxt, string itemTxt)
@@ -35,7 +34,7 @@ namespace Johnny_Punchfucker
             {
                 item.Update(gameTime);
             }
-            foreach(Barrel barrel in barrels)
+            foreach (Barrel barrel in barrels)
             {
                 barrel.Update(gameTime);
             }
@@ -52,7 +51,7 @@ namespace Johnny_Punchfucker
             {
                 item.Draw(spriteBatch);
             }
-            foreach(Barrel barrel in barrels)
+            foreach (Barrel barrel in barrels)
             {
                 barrel.Draw(spriteBatch);
             }
@@ -147,8 +146,8 @@ namespace Johnny_Punchfucker
                     {
                         enviromentList.Add(new JungleTree(TextureManager.jungleEntranceTex, new Vector2(j * 123, 15 + i * 123)));
                     }
-                    if (strings[i][j] == 'b') 
-                    {                  
+                    if (strings[i][j] == 'b')
+                    {
                         barrels.Add(new Barrel(TextureManager.barrel, new Vector2(j * 136, i * 110)));
                     }
 
@@ -156,33 +155,39 @@ namespace Johnny_Punchfucker
             }
             strings.Clear();
         }
+
         public void BarrelRemove()
         {
             for (int i = 0; i < barrels.Count; i++)
             {
-                if(barrels[i].IsDead)
+                if (barrels[i].IsDead)
                 {
                     barrels.RemoveAt(i);
                 }
             }
         }
+
         public void NextLevel(PlayerManager playerManager, EnemyManager enemyManager, int newStartPosX)
         {
             for (int i = 0; i < playerManager.playerList.Count; i++)
             {
 
+
                 if (playerManager.playerList[0].life <= 9)
                     playerManager.playerList[0].life++;
+
                 if (PlayerManager.players == 2)
                     if (playerManager.playerList[1].life <= 9)
                         playerManager.playerList[1].life++;
 
                 playerManager.playerList[0].pos = new Vector2(newStartPosX, 600);
+                playerManager.playerList[0].posJump = playerManager.playerList[0].pos;
                 playerManager.playerList[0].dead = false;
                 playerManager.playerList[0].animationBox.Height = 174;
                 if (PlayerManager.players == 2)
                 {
                     playerManager.playerList[1].pos = new Vector2(newStartPosX, 700);
+                    playerManager.playerList[1].posJump = playerManager.playerList[1].pos;
                     playerManager.playerList[1].dead = false;
                     playerManager.playerList[1].animationBox.Height = 174;
                 }

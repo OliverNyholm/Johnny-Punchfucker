@@ -21,18 +21,18 @@ namespace Johnny_Punchfucker
         Level2 level2;
         Level3 level3;
         Level4 level4;
-        public static int levelNr = 3;
+        public static int levelNr = 2;
         public int firstDigitSeconds, secondDigitSeconds, firstDigitMinutes, secondDigitMinutes, firstDigitHours, secondDigitHours;
         public double time, digitSeconds;
         public int intro = 0; // vilket intro det är
-        public static bool levelInitialized;
+        public static bool levelInitialized, completed, failed, hardcore;
 
 
         public TimeSpan introSwitch;
 
         public enum GameState
         {
-            Intro, Menu, Play, Pause, End
+            Intro, Menu, Play, Pause, Died, Won, ReloadLevel
         }
         public GameState gameState;
 
@@ -48,9 +48,7 @@ namespace Johnny_Punchfucker
             playerManager = new PlayerManager();
             enemyManager = new EnemyManager(GraphicsDevice);
             InitializeLevels(Content);
-            gameState = GameState.Play;
-
-
+            gameState = GameState.Menu;
         }
 
         public void Update(GameTime gameTime, GraphicsDeviceArcade GraphicsDevice, ContentManager Content)
@@ -178,8 +176,10 @@ namespace Johnny_Punchfucker
 
                     time += gameTime.ElapsedGameTime.TotalSeconds;
 
-                    if (levelNr == 5 || ContentLoader.end)
-                        gameState = GameState.End;
+                    if (GameManager.failed)
+                        gameState = GameState.Died;
+                    if (GameManager.completed)
+                        gameState = GameState.Won;
                     break;
 
                 case GameState.Pause:
@@ -202,18 +202,38 @@ namespace Johnny_Punchfucker
                     }
                     break;
 
-                case GameState.End:
+                case GameState.Died:
 
                     menu.play = false;
                     LevelMusic.Stop();
-                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
+                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
                     {
-                        ContentLoader.end = false;
+                        GameManager.failed = false;
+                        gameState = GameState.ReloadLevel;
+                    }
+                    break;
+
+                case GameState.Won:
+
+                    menu.play = false;
+                    LevelMusic.Stop();
+                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
+                    {
+                        GameManager.failed = false;
                         ClearLists();
                         gameState = GameState.Menu;
                         menu.menuState = Menu.MenuState.MainMenu;
                         RestartCamera();
                     }
+                    break;
+
+                case GameState.ReloadLevel:
+                    ReloadLevel(Content);
+                    RestartCamera();
+                    playerManager.playerList[0].life = 10;
+                    if (PlayerManager.players == 2) //Om det är två spelare, gör samma sak för spelare 2)
+                        playerManager.playerList[1].life = 10;
+                    gameState = GameState.Play;
                     break;
             }
         }
@@ -262,7 +282,7 @@ namespace Johnny_Punchfucker
 
             spriteBatch.DrawString(TextureManager.timeFont, secondDigitHours.ToString() + firstDigitHours.ToString() +
             ":" + secondDigitMinutes.ToString() + firstDigitMinutes.ToString() +
-            ":" + secondDigitSeconds.ToString() + firstDigitSeconds.ToString(), new Vector2(784.5f, 920), Color.Green);
+            ":" + secondDigitSeconds.ToString() + firstDigitSeconds.ToString(), new Vector2(800, 920), Color.Green);
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -302,13 +322,13 @@ namespace Johnny_Punchfucker
 
                     break;
 
-                case GameState.End:
+                case GameState.Died:
+                    spriteBatch.Draw(TextureManager.gameOverScreenTex, Vector2.Zero, Color.White);
 
-                    if (levelNr == 5)
-                        spriteBatch.Draw(TextureManager.endScreenTex, Vector2.Zero, Color.White);
+                    break;
 
-                    else
-                        spriteBatch.Draw(TextureManager.gameOverScreenTex, Vector2.Zero, Color.White);
+                case GameState.Won:
+                    spriteBatch.Draw(TextureManager.endScreenTex, Vector2.Zero, Color.White);
 
                     break;
             }
@@ -367,6 +387,19 @@ namespace Johnny_Punchfucker
                 return level4;
 
             return null;
+        }
+
+        private void ReloadLevel(ContentManager Content)
+        {
+            if(hardcore)
+            {
+                levelNr = 1;
+                ResetTime();
+            }
+            InitializeLevels(Content);
+            Level levelX = GetLevel();
+            levelX.contentLoader.NextLevel(playerManager, enemyManager, levelX.nextLevelPosX);
+
         }
 
         private void TotalPlayTime(GameTime gameTime)

@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +35,8 @@ namespace Johnny_Punchfucker
         public static Texture2D menuSound { get; private set; }
         public static Texture2D menuSoundOn { get; private set; }
         public static Texture2D menuSoundOff { get; private set; }
+        public static Texture2D hardcore { get; private set; }
+        public static Texture2D noob { get; private set; }
 
         public static Texture2D pauseNo { get; private set; }
         public static Texture2D pauseYes { get; private set; }
@@ -132,6 +134,8 @@ namespace Johnny_Punchfucker
             menuSound = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuSound");
             menuSoundOn = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuSoundOn");
             menuSoundOff = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuSoundOff");
+            hardcore = Content.Load<Texture2D>(@"Images1080\MenuImages\Hardcore");
+            noob = Content.Load<Texture2D>(@"Images1080\MenuImages\Noob");
             menuHow = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuHow");
             menuMoves = Content.Load<Texture2D>(@"Images1080\MenuImages\Moves");
             pauseMenu = Content.Load<Texture2D>(@"Images1080\MenuImages\pauseMenu");

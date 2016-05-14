@@ -13,9 +13,6 @@ namespace Johnny_Punchfucker
     class Vitas : Enemy
     {
         List<Player> playerList;
-        public bool firstWalk = false, bossEngaged, GotNr, hitByShockwave, DAMAGENOW;
-        double shockwaveSpawnTime;
-        int shockwaveSpawn;
         List<Rectangle> shockwaves = new List<Rectangle>();
         List<Rectangle> fireshieldFloor = new List<Rectangle>();
         public float fireDelay = 2.2f;
@@ -210,7 +207,7 @@ namespace Johnny_Punchfucker
                     Rectangle rect = new Rectangle((int)pos.X - 80, (int)pos.Y - 80, 150, 150);
                     fireshieldFloor.Add(rect);
                     fireshieldDelayTimer = TimeSpan.FromSeconds(fireshieldDelay);
-                    if (fireshieldFloor.Count > 14)
+                    if (fireshieldFloor.Count > 12)
                         fireshieldFloor.RemoveAt(0);
                 }
             }

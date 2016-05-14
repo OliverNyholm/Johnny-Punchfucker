@@ -254,7 +254,7 @@ namespace Johnny_Punchfucker
                         enemyList[j].hasHit = false;
                         enemyList[j].fightFrame = 0;
                         enemyList[j].fightingCooldown = -200;
-                        enemyList[j].punchBox = new Rectangle((int)enemyList[j].pos.X - 44, (int)enemyList[j].pos.Y - 65, 0, 0); //resettar slaget hitbox ovanför gubben igen
+                        enemyList[j].punchBox = new Rectangle((int)enemyList[j].pos.X - 4400, (int)enemyList[j].pos.Y - 6500, 0, 0); //resettar slaget hitbox ovanför gubben igen
 
                         particleExplosion = new ParticleExplosion(TextureManager.bloodTex, new Vector2(playerManager.playerList[i].blockBox.X, playerManager.playerList[i].blockBox.Y + 50), Color.Blue);
                     }
