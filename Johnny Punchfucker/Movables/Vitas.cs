@@ -51,7 +51,6 @@ namespace Johnny_Punchfucker
             fireDelayTimer = TimeSpan.FromSeconds(fireDelay);
             fireshieldDelayTimer = TimeSpan.FromSeconds(fireshieldDelay);
             rnd = new Random();
-            life = 1;
             oldlife = life;
             bannerPos = new Vector2(-150, 200);
 
