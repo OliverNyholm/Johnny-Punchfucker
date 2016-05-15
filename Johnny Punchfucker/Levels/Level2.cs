@@ -14,7 +14,7 @@ namespace Johnny_Punchfucker
     class Level2 : Level
     {
         public ParticleExplosion particleExplosion;
-        bool spawn1;
+        bool spawn1, bossAggroed;
 
         public Level2(ContentManager Content, PlayerManager playerManager, EnemyManager enemyManager)  : base(Content, playerManager, enemyManager)
         {
@@ -109,9 +109,11 @@ namespace Johnny_Punchfucker
 
         public void BossFightStart(PlayerManager playerManager)
         {
-            if (playerManager.playerList[0].pos.X >= 2900)
+            if (playerManager.playerList[0].pos.X >= 2900 && !bossAggroed)
             {
                 Mingy.bossEngaged = true;
+                if (AudioManager.sound) AudioManager.Mingy_YouLoooooseHeh.Play();
+                bossAggroed = true;
             }
         }
 

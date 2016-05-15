@@ -18,7 +18,7 @@ namespace Johnny_Punchfucker
 
         public enum MenuState
         {
-            MainMenu, NewGame, Difficulty, Options, HowToPlay, Pause, PauseOptions, PauseQuit
+            MainMenu, NewGame, Difficulty, Options, HowToPlay, Pause, PauseOptions, PauseQuit, HighScore
         }
         public MenuState menuState;
         public Menu(ContentManager Content)
@@ -35,15 +35,15 @@ namespace Johnny_Punchfucker
             #region Key Up
             if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Up, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Up, false)) // väljer vilken "knapp" man vill till i menyn
             {
-                if (menuState != MenuState.HowToPlay)
+                if (menuState != MenuState.HowToPlay && menuState != MenuState.HighScore)
                     AudioManager.MenuMove.Play();
 
                 menuNumber--;
-                if (menuNumber == 0 && menuState == MenuState.Pause) // om man trycker upp vid toppen går man till botten
+                if (menuNumber == 0 && (menuState == MenuState.Pause || menuState == MenuState.MainMenu)) // om man trycker upp vid toppen går man till botten
                 {
                     menuNumber = 3;
                 }
-                if (menuNumber == 0 && (menuState == MenuState.NewGame || menuState == MenuState.MainMenu || menuState == MenuState.Difficulty || menuState == MenuState.PauseQuit))
+                if (menuNumber == 0 && (menuState == MenuState.NewGame || menuState == MenuState.Difficulty || menuState == MenuState.PauseQuit))
                 {
                     menuNumber = 2;
                 }
@@ -56,15 +56,15 @@ namespace Johnny_Punchfucker
             #region Key Down
             if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Down, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Down, false))
             {
-                if (menuState != MenuState.HowToPlay)
+                if (menuState != MenuState.HowToPlay && menuState != MenuState.HighScore)
                     AudioManager.MenuMove.Play();
 
                 menuNumber++;
-                if (menuNumber == 4 && menuState == MenuState.Pause)
+                if (menuNumber == 4 && (menuState == MenuState.Pause || menuState == MenuState.MainMenu))
                 {
                     menuNumber = 1;
                 }
-                if (menuNumber == 3 && (menuState == MenuState.NewGame || menuState == MenuState.MainMenu || menuState == MenuState.Difficulty || menuState == MenuState.PauseQuit))
+                if (menuNumber == 3 && (menuState == MenuState.NewGame || menuState == MenuState.Difficulty || menuState == MenuState.PauseQuit))
                 {
                     menuNumber = 1;
                 }
@@ -89,6 +89,11 @@ namespace Johnny_Punchfucker
                     if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         menuState = MenuState.Options;
+                        menuNumber = 1;
+                    }
+                    if (menuNumber == 3 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
+                    {
+                        menuState = MenuState.HighScore;
                         menuNumber = 1;
                     }
                     if (menuNumber == 3 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
@@ -248,6 +253,17 @@ namespace Johnny_Punchfucker
                     }
                     break;
                 #endregion
+                #region Highscore
+                case MenuState.HighScore:
+                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
+                    {
+                        AudioManager.MenuBack.Play();
+
+                        menuState = MenuState.MainMenu;
+                        menuNumber = 2;
+                    }
+                    break;
+                #endregion
             #endregion
 
             }
@@ -279,6 +295,12 @@ namespace Johnny_Punchfucker
                     }
                     else
                         spriteBatch.Draw(TextureManager.menuOptions, new Vector2(450, 487), Color.Yellow);
+                    if (menuNumber == 3)
+                    {
+                        spriteBatch.Draw(TextureManager.highscore, new Vector2(550, 700), Color.Red);
+                    }
+                    else
+                        spriteBatch.Draw(TextureManager.highscore, new Vector2(550, 700), Color.Yellow);
                     break;
                 #endregion
                 #region New Game
@@ -413,6 +435,19 @@ namespace Johnny_Punchfucker
                     }
                     else
                         spriteBatch.Draw(TextureManager.pauseNo, new Vector2(1050, 604), Color.Yellow);
+                    break;
+                #endregion
+                #region Highscore
+                case MenuState.HighScore:
+                    //spriteBatch.Draw(TextureManager.highscore, new Vector2(600, 330), Color.Red);
+                    spriteBatch.Draw(TextureManager.highscoreText, new Vector2(550, 290), Color.Yellow);
+
+                        spriteBatch.DrawString(TextureManager.timeFont, "1: " + GameManager.highScoreList[0].name.ToString() + "    " + GameManager.highScoreList[0].minutes.ToString() +
+                            ":" + GameManager.highScoreList[0].minutes.ToString(), new Vector2(730, 600), Color.Red);
+                        spriteBatch.DrawString(TextureManager.timeFont, "2: " + GameManager.highScoreList[1].name.ToString() + "    " + GameManager.highScoreList[1].minutes.ToString() +
+                            ":" + GameManager.highScoreList[1].minutes.ToString(), new Vector2(730, 750), Color.Red);
+                        spriteBatch.DrawString(TextureManager.timeFont, "3: " + GameManager.highScoreList[2].name.ToString() + "    " + GameManager.highScoreList[2].minutes.ToString() +
+                            ":" + GameManager.highScoreList[2].minutes.ToString(), new Vector2(730, 900), Color.Red);
                     break;
                 #endregion
             #endregion

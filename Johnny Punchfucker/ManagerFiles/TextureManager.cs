@@ -25,6 +25,10 @@ namespace Johnny_Punchfucker
         public static Texture2D menuOptions { get; private set; }
         public static Texture2D menuHow { get; private set; }
         public static Texture2D menuMoves { get; private set; }
+        public static Texture2D highscore { get; private set; }
+        public static Texture2D highscoreText { get; private set; }
+        public static Texture2D highscorebeaten { get; private set; }
+        public static Texture2D highscoreunbeaten { get; private set; }
 
 
 
@@ -47,6 +51,7 @@ namespace Johnny_Punchfucker
 
 
         public static Texture2D endScreenTex { get; private set; }
+        public static Texture2D endScreenHC { get; private set; }
         public static Texture2D gameOverScreenTex { get; private set; }
 
         #endregion
@@ -132,6 +137,10 @@ namespace Johnny_Punchfucker
             loadingCircle = Content.Load<Texture2D>(@"Images1080\loadingCircle");
             menuBackground = Content.Load<Texture2D>(@"Images1080\MenuImages\menuBackground");
             menuNewGame = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuNewGame");
+            highscore = Content.Load<Texture2D>(@"Images1080\MenuImages\Highscore");
+            highscoreText = Content.Load<Texture2D>(@"Images1080\MenuImages\HighscoreTExt");
+            highscorebeaten = Content.Load<Texture2D>(@"Images1080\MenuImages\IntoHighscore");
+            highscoreunbeaten = Content.Load<Texture2D>(@"Images1080\MenuImages\NeededForHighscore");
             menuOptions = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuOptions");
             menuQuit = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuQuit");
             menuOnePlayer = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuOnePlayer");
@@ -151,6 +160,7 @@ namespace Johnny_Punchfucker
             pauseResume = Content.Load<Texture2D>(@"Images1080\MenuImages\MenuResume");
             pauseQuest = Content.Load<Texture2D>(@"Images1080\MenuImages\PauseQuest");
             endScreenTex = Content.Load<Texture2D>(@"Images1080\endScreen");
+            endScreenHC = Content.Load<Texture2D>(@"Images1080\endScreenHC");
             gameOverScreenTex = Content.Load<Texture2D>(@"Images1080\gameover");
             #endregion
 

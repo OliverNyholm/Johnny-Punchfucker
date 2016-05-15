@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Balder/Documents/GitHub/Johnny-Punchfucker/Johnny Punchfucker/Content/Audio/SoundEffects/Explosion.wav</SourceFile>
-  <SourceTime>2016-05-14T23:21:28.2823987+02:00</SourceTime>
-  <DestFile>C:/Users/Balder/Documents/GitHub/Johnny-Punchfucker/Johnny Punchfucker/Content/bin/Windows/Audio/SoundEffects/Explosion.xnb</DestFile>
-  <DestTime>2016-05-15T15:00:41.2015005+02:00</DestTime>
+  <SourceFile>C:/Users/Oliver/Documents/Visual Studio 2013/Projects/Johnny-Punchfucker/Johnny Punchfucker/Content/Audio/SoundEffects/Explosion.wav</SourceFile>
+  <SourceTime>2016-05-13T21:00:46.5355112+02:00</SourceTime>
+  <DestFile>C:/Users/Oliver/Documents/Visual Studio 2013/Projects/Johnny-Punchfucker/Johnny Punchfucker/Content/bin/Windows/Audio/SoundEffects/Explosion.xnb</DestFile>
+  <DestTime>2016-05-15T15:33:07.7523091+02:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

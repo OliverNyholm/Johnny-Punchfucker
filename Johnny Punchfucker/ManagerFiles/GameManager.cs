@@ -22,7 +22,7 @@ namespace Johnny_Punchfucker
         Level2 level2;
         Level3 level3;
         Level4 level4;
-        public static int levelNr = 4;
+        public static int levelNr = 2;
         public int firstDigitSeconds, secondDigitSeconds, firstDigitMinutes, secondDigitMinutes, firstDigitHours, secondDigitHours;
         public double time, digitSeconds;
         public int intro = 0; // vilket intro det är
@@ -35,7 +35,7 @@ namespace Johnny_Punchfucker
         List<String> strings = new List<string>();
         private bool saveScore = true;
         int[] scoreList;
-        Highscore[] highScoreList;
+        public static Highscore[] highScoreList;
         #endregion
 
         public TimeSpan introSwitch;
@@ -67,7 +67,7 @@ namespace Johnny_Punchfucker
             }
             sr.Close();
 
-            
+
             for (int i = 0; i < strings.Count; i++)
             {
                 int j = 0;
@@ -81,7 +81,7 @@ namespace Johnny_Punchfucker
                 j = 4;
                 while (strings[i][j] != ':')
                 {
-                    min = ""+ min + strings[i][j];
+                    min = "" + min + strings[i][j];
                     j++;
                 }
                 highScoreList[i].minutes = Convert.ToInt32(min);
@@ -102,9 +102,6 @@ namespace Johnny_Punchfucker
             enemyManager = new EnemyManager(GraphicsDevice);
             InitializeLevels(Content);
             gameState = GameState.Play;
-
-
-
         }
 
         public void Update(GameTime gameTime, GraphicsDeviceArcade GraphicsDevice, ContentManager Content)
@@ -275,24 +272,39 @@ namespace Johnny_Punchfucker
                     menu.play = false;
                     LevelMusic.Stop();
 
-                    if (NewScore((int)time / 60, (int)time % 60) != 4 && addNameInt == 0)
-                        addNameInt = 1;
-                    else if (NewScore((int)time / 60, (int)time % 60) == 4 && addNameInt == 0)
-                        addNameInt = 3;
-                    else if (addNameInt == 1)
-                        AddName();
-                    else if (addNameInt == 2)
-                        AddHighScore();
-                    else if (addNameInt == 3)
+                    if (hardcore)
                     {
-                        GameManager.failed = false;
-                        ClearLists();
-                        gameState = GameState.Menu;
-                        menu.menuState = Menu.MenuState.MainMenu;
-                        RestartCamera();
-                        GameManager.completed = false;
-                        addNameInt = 0;
+                        if (NewScore((int)time / 60, (int)time % 60) != 4 && addNameInt == 0)
+                            addNameInt = 1;
+                        else if (NewScore((int)time / 60, (int)time % 60) == 4 && addNameInt == 0)
+                            addNameInt = 3;
+                        else if (addNameInt == 1)
+                            AddName();
+                        else if (addNameInt == 2)
+                            AddHighScore();
+                        else if (addNameInt == 3)
+                            if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))
+                            {
+                                GameManager.failed = false;
+                                GameManager.completed = false;
+                                ClearLists();
+                                gameState = GameState.Menu;
+                                menu.menuState = Menu.MenuState.HighScore;
+                                RestartCamera();
+                                addNameInt = 0;
+                            }
                     }
+                    else
+                        if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))
+                        {
+                            GameManager.failed = false;
+                            GameManager.completed = false;
+                            ClearLists();
+                            gameState = GameState.Menu;
+                            menu.menuState = Menu.MenuState.MainMenu;
+                            RestartCamera();
+                            addNameInt = 0;
+                        }
                     break;
 
                 case GameState.ReloadLevel:
@@ -396,8 +408,30 @@ namespace Johnny_Punchfucker
                     break;
 
                 case GameState.Won:
-                    spriteBatch.Draw(TextureManager.endScreenTex, Vector2.Zero, Color.White);
-
+                    if (hardcore)
+                    {
+                        spriteBatch.Draw(TextureManager.endScreenHC, Vector2.Zero, Color.White);
+                        if (addNameInt == 1) //If it's hardcore, draws so you can add name
+                        {
+                            spriteBatch.Draw(TextureManager.highscorebeaten, new Vector2(790, 670), Color.Black);
+                            spriteBatch.DrawString(TextureManager.timeFont, secondDigitMinutes.ToString() + firstDigitMinutes.ToString() + //My Time
+                                        ":" + secondDigitSeconds.ToString() + firstDigitSeconds.ToString(), new Vector2(1180, 545), Color.Black);
+                            spriteBatch.DrawString(TextureManager.timeFont, goodName[0].ToString() + goodName[1].ToString() + goodName[2].ToString(), new Vector2(1300, 770), Color.Black); //Name
+                        } //If it's hardcore, but you didn't beat a record time
+                        else
+                        {
+                            spriteBatch.Draw(TextureManager.highscoreunbeaten, new Vector2(790, 670), Color.Black);
+                            spriteBatch.DrawString(TextureManager.timeFont, secondDigitMinutes.ToString() + firstDigitMinutes.ToString() + //My Time
+                                        ":" + secondDigitSeconds.ToString() + firstDigitSeconds.ToString(), new Vector2(1180, 545), Color.Black);
+                            spriteBatch.DrawString(TextureManager.timeFont, highScoreList[2].minutes.ToString() + ":" + highScoreList[2].seconds.ToString(), new Vector2(1230, 760), Color.Black); //record
+                        }
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(TextureManager.endScreenTex, Vector2.Zero, Color.White);
+                        spriteBatch.DrawString(TextureManager.timeFont, secondDigitMinutes.ToString() + firstDigitMinutes.ToString() +
+                            ":" + secondDigitSeconds.ToString() + firstDigitSeconds.ToString(), new Vector2(740, 420), Color.Black);
+                    }
                     break;
             }
         }
@@ -535,12 +569,11 @@ namespace Johnny_Punchfucker
         }
 
 
-        struct Highscore
+        public struct Highscore
         {
             public int minutes, seconds;
             public string name;
         }
-
         private void AddHighScore()
         {
 
@@ -582,8 +615,6 @@ namespace Johnny_Punchfucker
                 }
             }
         }
-
-
         private int NewScore(int minutes, int seconds)
         {
             int addedScore = 4;
@@ -632,8 +663,8 @@ namespace Johnny_Punchfucker
         }
         private void AddName()
         {
-            int max = 91;
-            int min = 65;
+            int max = 89;
+            int min = 66;
 
 
             if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Up, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Up, false))
@@ -657,11 +688,10 @@ namespace Johnny_Punchfucker
                     addNameInt = 2;
             }
             if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
-                if (letterPos > 1)
+                if (letterPos > 0)
                     letterPos--;
-            
-        }
 
+        }
         private void ReplaceHighScore0(int minutes, int seconds)
         {
             int holdScoreMin = highScoreList[0].minutes;
@@ -684,7 +714,6 @@ namespace Johnny_Punchfucker
             highScoreList[2].seconds = holdScore2S;
             highScoreList[2].name = holdScore2N;
         }
-
         private void ReplaceHighScore1(int minutes, int seconds)
         {
             int holdScoreMin = highScoreList[1].minutes;
