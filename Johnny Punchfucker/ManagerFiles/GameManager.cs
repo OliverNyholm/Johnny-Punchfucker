@@ -26,7 +26,7 @@ namespace Johnny_Punchfucker
         public int firstDigitSeconds, secondDigitSeconds, firstDigitMinutes, secondDigitMinutes, firstDigitHours, secondDigitHours;
         public double time, digitSeconds;
         public int intro = 0; // vilket intro det är
-        int letterPos = 0, addedName = 0;
+        int letterPos = 0, addNameInt = 0;
         char[] goodName = new char[3];
         public static bool levelInitialized, completed, failed, hardcore;
 
@@ -67,26 +67,31 @@ namespace Johnny_Punchfucker
             }
             sr.Close();
 
+            
             for (int i = 0; i < strings.Count; i++)
             {
                 int j = 0;
+                string min = "";
+                string sec = "";
                 while (strings[i][j] != ':')
                 {
                     highScoreList[i].name = highScoreList[i].name + strings[i][j];
                     j++;
                 }
-                j = 0;
+                j = 4;
                 while (strings[i][j] != ':')
                 {
-                    highScoreList[i].minutes = highScoreList[i].minutes + strings[i][j];
+                    min = ""+ min + strings[i][j];
                     j++;
                 }
-                j = 0;
+                highScoreList[i].minutes = Convert.ToInt32(min);
+                j = 7;
                 while (strings[i][j] != ':')
                 {
-                    highScoreList[i].seconds = highScoreList[i].seconds + strings[i][j];
+                    sec = "" + sec + strings[i][j];
                     j++;
                 }
+                highScoreList[i].seconds = Convert.ToInt32(sec);
             }
 
             #endregion
@@ -269,17 +274,24 @@ namespace Johnny_Punchfucker
 
                     menu.play = false;
                     LevelMusic.Stop();
-                    if (addedName == 1)
+
+                    if (NewScore((int)time / 60, (int)time % 60) != 4 && addNameInt == 0)
+                        addNameInt = 1;
+                    else if (NewScore((int)time / 60, (int)time % 60) == 4 && addNameInt == 0)
+                        addNameInt = 3;
+                    else if (addNameInt == 1)
                         AddName();
-                    if (addedName == 2)
+                    else if (addNameInt == 2)
                         AddHighScore();
-                    if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
+                    else if (addNameInt == 3)
                     {
                         GameManager.failed = false;
                         ClearLists();
                         gameState = GameState.Menu;
                         menu.menuState = Menu.MenuState.MainMenu;
                         RestartCamera();
+                        GameManager.completed = false;
+                        addNameInt = 0;
                     }
                     break;
 
@@ -531,7 +543,6 @@ namespace Johnny_Punchfucker
 
         private void AddHighScore()
         {
-            bool addedScore = false;
 
             int minutes = (int)time / 60;
             if (minutes > 59)
@@ -542,107 +553,113 @@ namespace Johnny_Punchfucker
             if (saveScore)
             {
                 saveScore = false;
+                int addedScore = NewScore(minutes, seconds);
 
-                #region Check First Place
-                if (minutes < highScoreList[0].minutes)
+                if (addedScore == 0)
                 {
                     ReplaceHighScore0(minutes, seconds);
-                    addedScore = true;
                 }
-                else if (minutes == highScoreList[0].minutes)
-                {
-                    if (seconds < highScoreList[0].seconds)
-                    {
-                        ReplaceHighScore0(minutes, seconds);
-                        addedScore = true;
-                    }
-                }
-                #endregion
-
-                #region Check Second Place
-                if (minutes < highScoreList[1].minutes && !addedScore)
+                else if (addedScore == 1)
                 {
                     ReplaceHighScore1(minutes, seconds);
-                    addedScore = true;
                 }
-                else if (minutes == highScoreList[1].minutes && !addedScore)
-                {
-                    if (seconds < highScoreList[1].seconds)
-                    {
-                        ReplaceHighScore1(minutes, seconds);
-                        addedScore = true;
-                    }
-                }
-                #endregion
-
-                #region Check Third Place
-                if (minutes < highScoreList[2].minutes && !addedScore)
+                else if (addedScore == 2)
                 {
                     highScoreList[2].minutes = minutes;
                     highScoreList[2].seconds = seconds;
                     highScoreList[2].name = "" + goodName[0] + goodName[1] + goodName[2];
-                    addedScore = true;
                 }
-                else if (minutes == highScoreList[2].minutes && !addedScore)
-                {
-                    if (seconds < highScoreList[2].seconds)
-                    {
 
-                        highScoreList[2].minutes = minutes;
-                        highScoreList[2].seconds = seconds;
-                        highScoreList[2].name = "" + goodName[0] + goodName[1] + goodName[2];
-                        addedScore = true;
-                    }
-                    else
-                        return;
-                }
-                else if (minutes > highScoreList[2].minutes)
-                    return;
-                #endregion
-
-                if (addedScore)
+                if (addedScore != 4)
                 {
                     highScoreWriter = new StreamWriter(@"Content/highscore.txt");
-                    for (int j = 0; j < scoreList.Length; j++)
+                    for (int j = 0; j < highScoreList.Length; j++)
                     {
                         highScoreWriter.WriteLine(highScoreList[j].name + ":" + highScoreList[j].minutes + ":" + highScoreList[j].seconds + ":");
                     }
                     highScoreWriter.Close();
+                    addNameInt = 3;
                 }
             }
         }
 
+
+        private int NewScore(int minutes, int seconds)
+        {
+            int addedScore = 4;
+            #region Check First Place
+            if (minutes < highScoreList[0].minutes)
+            {
+                addedScore = 0;
+            }
+            else if (minutes == highScoreList[0].minutes)
+            {
+                if (seconds < highScoreList[0].seconds)
+                {
+                    addedScore = 0;
+                }
+            }
+            #endregion
+
+            #region Check Second Place
+            if (minutes < highScoreList[1].minutes && addedScore == 4)
+            {
+                addedScore = 1;
+            }
+            else if (minutes == highScoreList[1].minutes && addedScore == 4)
+            {
+                if (seconds < highScoreList[1].seconds)
+                {
+                    addedScore = 1;
+                }
+            }
+            #endregion
+
+            #region Check Third Place
+            if (minutes < highScoreList[2].minutes && addedScore == 4)
+            {
+                addedScore = 2;
+            }
+            else if (minutes == highScoreList[2].minutes && addedScore == 4)
+            {
+                if (seconds < highScoreList[2].seconds)
+                {
+                    addedScore = 2;
+                }
+            }
+            return addedScore;
+            #endregion
+        }
         private void AddName()
         {
             int max = 91;
             int min = 65;
 
-            while (letterPos != 3)
+
+            if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Up, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Up, false))
             {
-                if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Up, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Up, false))
-                {
-                    int pos = goodName[letterPos];
-                    goodName[letterPos]++;
-                    if (pos > max)
-                        goodName[letterPos] = 'A';
-                }
-                if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Down, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Down, false))
-                {
-                    int pos = goodName[letterPos];
-                    goodName[letterPos]--;
-                    if (pos < min)
-                        goodName[letterPos] = 'Z';
-                }
-                if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))
-                {
-                    letterPos++;
-                    if (letterPos == 3)
-                        addedName = 2;
-                }
-                if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
-                    if (letterPos > 1)
-                        letterPos--;
+                int pos = goodName[letterPos];
+                goodName[letterPos]++;
+                if (pos > max)
+                    goodName[letterPos] = 'A';
             }
+            if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Down, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Down, false))
+            {
+                int pos = goodName[letterPos];
+                goodName[letterPos]--;
+                if (pos < min)
+                    goodName[letterPos] = 'Z';
+            }
+            if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false))
+            {
+                letterPos++;
+                if (letterPos == 3)
+                    addNameInt = 2;
+            }
+            if (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Blue, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Blue, false))
+                if (letterPos > 1)
+                    letterPos--;
+            
         }
 
         private void ReplaceHighScore0(int minutes, int seconds)
