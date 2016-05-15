@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Balder/Documents/GitHub/Johnny-Punchfucker/Johnny Punchfucker/Content/Images1080/MenuImages/MenuSoundOff.png</SourceFile>
-  <SourceTime>2016-05-14T23:21:28.3945039+02:00</SourceTime>
-  <DestFile>C:/Users/Balder/Documents/GitHub/Johnny-Punchfucker/Johnny Punchfucker/Content/bin/Windows/Images1080/MenuImages/MenuSoundOff.xnb</DestFile>
-  <DestTime>2016-05-14T23:23:52.7017527+02:00</DestTime>
+  <SourceFile>C:/Users/Oliver/Documents/Visual Studio 2013/Projects/Johnny-Punchfucker/Johnny Punchfucker/Content/Images1080/MenuImages/MenuSoundOff.png</SourceFile>
+  <SourceTime>2016-05-13T21:00:46.7427094+02:00</SourceTime>
+  <DestFile>C:/Users/Oliver/Documents/Visual Studio 2013/Projects/Johnny-Punchfucker/Johnny Punchfucker/Content/bin/Windows/Images1080/MenuImages/MenuSoundOff.xnb</DestFile>
+  <DestTime>2016-05-15T12:48:48.877326+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

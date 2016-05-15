@@ -1279,3 +1279,6 @@
 /processorParam:TextureFormat=Color
 /build:Images1080/VitasBanner.png
 
+#begin highscore.txt
+/copy:highscore.txt
+

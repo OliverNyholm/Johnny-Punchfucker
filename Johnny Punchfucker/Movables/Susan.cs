@@ -66,10 +66,10 @@ namespace Johnny_Punchfucker
             if (!hitByShockwave)
                 ShockWaveDamage(playerList);
 
-            if (phase != 0 || phase != 5)
-                boundingBox = new Rectangle((int)pos.X - width / 2, (int)pos.Y - height / 2, width - 15, height - 10);
-            else
+            if (phase == 0 || phase == 1 || phase == 5)
                 boundingBox = new Rectangle((int)pos.X - width / 2, (int)pos.Y - height / 2, 0, 0);
+            else
+                boundingBox = new Rectangle((int)pos.X - width / 2, (int)pos.Y - height / 2, width - 15, height - 10);
 
             feetBox = new Rectangle((int)pos.X - (int)73, (int)pos.Y + (183 - 4) - (int)offset.Y, width - 10, height - (height - 4));
 
