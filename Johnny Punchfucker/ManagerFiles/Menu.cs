@@ -297,10 +297,10 @@ namespace Johnny_Punchfucker
                         spriteBatch.Draw(TextureManager.menuOptions, new Vector2(450, 487), Color.Yellow);
                     if (menuNumber == 3)
                     {
-                        spriteBatch.Draw(TextureManager.highscore, new Vector2(550, 700), Color.Red);
+                        spriteBatch.Draw(TextureManager.highscore, new Vector2(540, 720), Color.Red);
                     }
                     else
-                        spriteBatch.Draw(TextureManager.highscore, new Vector2(550, 700), Color.Yellow);
+                        spriteBatch.Draw(TextureManager.highscore, new Vector2(540, 720), Color.Yellow);
                     break;
                 #endregion
                 #region New Game
