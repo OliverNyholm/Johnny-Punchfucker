@@ -17,7 +17,7 @@ namespace Johnny_Punchfucker
         public Menu menu;
         public PlayerManager playerManager;
         EnemyManager enemyManager;
-        float musicVolume = 0.3f;
+        float musicVolume = 1.0f;
         Level1 level1;
         Level2 level2;
         Level3 level3;

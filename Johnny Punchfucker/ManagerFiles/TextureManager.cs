@@ -207,7 +207,7 @@ namespace Johnny_Punchfucker
             bombTex = Content.Load<Texture2D>(@"Images1080\bombTex");
             shockwaveTex = Content.Load<Texture2D>(@"Images1080\lava");
             fireshieldTex = Content.Load<Texture2D>(@"Images1080\fireshield");
-            explosionTex = Content.Load<Texture2D>(@"Images1080\explosion");
+            explosionTex = Content.Load<Texture2D>(@"Images1080\Explosion02");
             shockwave = Content.Load<Texture2D>(@"Images1080\lava");
             sandripple = Content.Load<Texture2D>(@"Images1080\sand2");
             #endregion

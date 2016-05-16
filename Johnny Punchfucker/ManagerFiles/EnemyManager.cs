@@ -172,7 +172,7 @@ namespace Johnny_Punchfucker
                 {
                     bossAttackList.RemoveAt(j);
                 }
-                if (bossAttackList.Count > 0 && bossAttackList[j] is Bomb && bossAttackList[j].frame >= 13)
+                if (bossAttackList.Count > 0 && bossAttackList[j] is Bomb && bossAttackList[j].frame >= 10)
                 {
                     bossAttackList.RemoveAt(j);
                 }

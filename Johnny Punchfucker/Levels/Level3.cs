@@ -39,7 +39,7 @@ namespace Johnny_Punchfucker
         public void Draw(SpriteBatch spriteBatch)
         {
             contentLoader.Draw(spriteBatch);
-            spriteBatch.Draw(TextureManager.lifeBarTex, nextLevelBox, Color.Black);
+           // spriteBatch.Draw(TextureManager.lifeBarTex, nextLevelBox, Color.Black);
         }
 
         private void SpawnEnemy1(List<Enemy> enemyList)

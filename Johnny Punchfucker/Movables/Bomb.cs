@@ -43,14 +43,14 @@ namespace Johnny_Punchfucker
             }
             else
             {
-                animationBox.Width = 156;
-                animationBox.Height = 150;
-                width /= 13;
+                animationBox.Width = 120;
+                animationBox.Height = 120;
+                width /= 10;
                 if (frameTime <= 0)
                 {
                     frameTime = 60;
                     frame++;
-                    animationBox.X = (frame % 13) * 104;
+                    animationBox.X = (frame % 10) * 120;
                 }
             }
 

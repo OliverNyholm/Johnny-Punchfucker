@@ -126,7 +126,7 @@ namespace Johnny_Punchfucker
                 {
                     once = true;
                     targetintPos++;
-                    if (targetintPos > 9)
+                    if (targetintPos > 7)
                     {
                         stage = 2;
                         targetintPos = 0;
@@ -184,7 +184,7 @@ namespace Johnny_Punchfucker
                 shockwaves[i] = new Rectangle(shockwaves[i].X - 10, shockwaves[i].Y, shockwaves[i].Width, shockwaves[i].Height);
                 for (int j = 0; j < playerList.Count; j++)
                 {
-                    if ((playerList[j].feetBox.Intersects(shockwaves[i]) && playerList[j].onGround))
+                    if ((playerList[j].feetBox.Intersects(shockwaves[i]) && playerList[j].onGround) && playerList[j].dead == false)
                     {
                         if (j == 0)
                             playerList[j].PlayerOneHurt();
@@ -204,7 +204,7 @@ namespace Johnny_Punchfucker
             {
                 for (int j = 0; j < playerList.Count; j++)
                 {
-                    if ((playerList[j].feetBox.Intersects(new Rectangle(fireshieldFloor[i].X + 10, fireshieldFloor[i].Y + 60, fireshieldFloor[i].Width - 10, fireshieldFloor[i].Height - 30))))
+                    if ((playerList[j].feetBox.Intersects(new Rectangle(fireshieldFloor[i].X + 10, fireshieldFloor[i].Y + 60, fireshieldFloor[i].Width - 10, fireshieldFloor[i].Height - 30))) && playerList[j].dead == false)
                     {
                         if (j == 0)
                             playerList[j].PlayerOneHurt();
