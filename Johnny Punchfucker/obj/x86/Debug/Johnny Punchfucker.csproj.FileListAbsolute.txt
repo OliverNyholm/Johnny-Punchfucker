@@ -1508,6 +1508,7 @@ C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Joh
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl3environment.txt
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl3items.txt
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Levels\lvl4environment.txt
-C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\PreviewData\GameBanner.png.xnb
-C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\PreviewData\GamePreviewInfoImage.png.xnb
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\Explosion02.xnb
+C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\PreviewData\GameBanner.xnb
+C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\PreviewData\GamePreviewInfoImage.xnb
+C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Debug\Content\Images1080\arrow.xnb

@@ -237,7 +237,11 @@ namespace Johnny_Punchfucker
             feetBox = new Rectangle((int)pos.X - (int)73, (int)pos.Y + (183 - 4) - (int)offset.Y, width - 10, height - (height - 4));
 
             if (life <= 0)
+            {
                 DEAD = true;
+                canFire = false;
+                shockwaves.Clear();
+            }
             base.Update(gameTime);
         }
 

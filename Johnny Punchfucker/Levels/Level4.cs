@@ -53,7 +53,7 @@ namespace Johnny_Punchfucker
 
         private void SpawnBoss()
         {
-            enemyManager.enemyList.Add(new Susan(TextureManager.susan, new Vector2(2300, -100), false, 1, playerManager.playerList, enemyManager));
+            enemyManager.enemyList.Add(new Susan(TextureManager.susan, new Vector2(2300, -100), false, 4, playerManager.playerList, enemyManager));
             bossSpawned = true;
         }
 

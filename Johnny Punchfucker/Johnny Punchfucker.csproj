@@ -88,8 +88,8 @@
     <Content Include="AssemblyInfo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\PreviewData\GameBanner.png.png" />
-    <Content Include="Content\PreviewData\GamePreviewInfoImage.png.png" />
+    <Content Include="Content\PreviewData\GameBanner.png" />
+    <Content Include="Content\PreviewData\GamePreviewInfoImage.png" />
     <Content Include="Settings.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

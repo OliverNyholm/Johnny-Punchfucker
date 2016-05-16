@@ -180,7 +180,7 @@ namespace Johnny_Punchfucker
             roadTex = Content.Load<Texture2D>(@"Images1080\road");
           //  startMenuTex = Content.Load<Texture2D>(@"Images1080\startmenu");
             smallPlantTex = Content.Load<Texture2D>(@"Images1080\plant");
-          //  jungleEntranceTex = Content.Load<Texture2D>(@"Images1080\jungleEntrance");
+            jungleEntranceTex = Content.Load<Texture2D>(@"Images1080\arrow");
             jungleBackground1Tex = Content.Load<Texture2D>(@"Images1080\junglebackground3");
             jungleBackground2Tex = Content.Load<Texture2D>(@"Images1080\junglebackground4");
           //  jungleRoadTex = Content.Load<Texture2D>(@"Images1080\jungleroad");

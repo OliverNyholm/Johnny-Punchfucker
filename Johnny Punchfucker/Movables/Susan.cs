@@ -58,15 +58,15 @@ namespace Johnny_Punchfucker
             if (initShockwaves && !dead)
                 SpawnShockwaves(gameTime);
 
-            if (life <= 0) 
+            if (life <= 0)
                 dead = true;
             if (!dead) //Controls the bossfight if boss isn't dead
-                BossFight(gameTime, playerList, enemyManager);                
+                BossFight(gameTime, playerList, enemyManager);
 
             if (!hitByShockwave)
                 ShockWaveDamage(playerList);
 
-            if (phase == 0 || phase == 1 || phase == 5)
+            if (phase == 0 || phase == 1 || phase == 3 || phase == 5)
                 boundingBox = new Rectangle((int)pos.X - width / 2, (int)pos.Y - height / 2, 0, 0);
             else
                 boundingBox = new Rectangle((int)pos.X - width / 2, (int)pos.Y - height / 2, width - 15, height - 10);
@@ -207,13 +207,23 @@ namespace Johnny_Punchfucker
         {
             int knockbackPos = 800; //617
             previousHealth = (int)life;
-            for (int i = 0; i < playerList.Count; i++)
+            if (PlayerManager.players == 1)
             {
-                if (playerList[i].pos.X > knockbackPos)
-                    playerList[i].pos.X -= 30;
+                if (playerList[0].pos.X > knockbackPos)
+                    playerList[0].pos.X -= 30;
                 else
                     phase = 2;
             }
+            else if(PlayerManager.players == 2)
+            {
+                if (playerList[0].pos.X > knockbackPos)
+                    playerList[0].pos.X -= 30;
+                if (playerList[1].pos.X > knockbackPos)
+                    playerList[1].pos.X -= 30;
+                else if (playerList[0].pos.X < knockbackPos && playerList[1].pos.X < knockbackPos)
+                    phase = 2;
+            }
+
         }
 
         private void ShootBullets(GameTime gameTime, List<BossAttacks> bossAttacks)
