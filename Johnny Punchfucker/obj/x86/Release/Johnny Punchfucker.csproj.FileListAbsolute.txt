@@ -485,3 +485,4 @@ C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Joh
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Release\Content\PreviewData\GameBanner.xnb
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Release\Content\PreviewData\GamePreviewInfoImage.xnb
 C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\bin\Windows\Release\Content\Images1080\arrow.xnb
+C:\Users\Spellabbet\Documents\Visual Studio 2013\Projects\Johnny-Punchfucker\Johnny Punchfucker\obj\x86\Release\Johnny Punchfucker.csprojResolveAssemblyReference.cache

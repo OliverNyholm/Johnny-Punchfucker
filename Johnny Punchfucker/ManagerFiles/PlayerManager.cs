@@ -11,7 +11,7 @@ namespace Johnny_Punchfucker
     class PlayerManager
     {
         public List<Player> playerList = new List<Player>();
-        public static int players = 2;
+        public static int players = 1;
         public ParticleExplosion particleExplosion;
         double gameOverDelay;
         public bool deathSound1, deathSound2;

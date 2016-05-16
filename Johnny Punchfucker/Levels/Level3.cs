@@ -23,13 +23,17 @@ namespace Johnny_Punchfucker
 
         public void Update(GameTime gameTime)
         {
-            nextLevelBox = new Rectangle(2870, (int)502, 40, 300); //tar man i denna går man över till level 2
+            if (Vitas.DEAD)
+                nextLevelBox = new Rectangle(2870, (int)502, 40, 300);
+            else
+                nextLevelBox = new Rectangle(2870 + 2000, (int)335, 0, 0);
+
             contentLoader.Update(gameTime);
             CameraStopWhenEnemySpawn(playerManager, gameTime);
 
             //Om spelaren går i mål så kommer man att ha klarat av level 1 och level 2 ska börja
             for (int i = 0; i < playerManager.playerList.Count; i++)
-                if (playerManager.playerList[i].boundingBox.Intersects(nextLevelBox) && Vitas.DEAD == true)
+                if (playerManager.playerList[i].boundingBox.Intersects(nextLevelBox))
                 {
                     contentLoader.NextLevel(playerManager, enemyManager, 1200);
                     GameManager.levelNr++;

@@ -239,7 +239,7 @@ namespace Johnny_Punchfucker
                     if (menuNumber == 2 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
                         menuState = MenuState.MainMenu;
-                        menuNumber = 0;
+                        menuNumber = 1;
                     }
                     else if (menuNumber == 1 && (InputHandler.IsButtonDown(PlayerIndex.One, PlayerInput.Red, true) && InputHandler.IsButtonUp(PlayerIndex.One, PlayerInput.Red, false)))
                     {
@@ -443,11 +443,11 @@ namespace Johnny_Punchfucker
                     spriteBatch.Draw(TextureManager.highscoreText, new Vector2(550, 290), Color.Yellow);
 
                         spriteBatch.DrawString(TextureManager.timeFont, "1: " + GameManager.highScoreList[0].name.ToString() + "    " + GameManager.highScoreList[0].minutes.ToString() +
-                            ":" + GameManager.highScoreList[0].minutes.ToString(), new Vector2(730, 600), Color.Red);
+                            ":" + GameManager.highScoreList[0].seconds.ToString(), new Vector2(730, 600), Color.Red);
                         spriteBatch.DrawString(TextureManager.timeFont, "2: " + GameManager.highScoreList[1].name.ToString() + "    " + GameManager.highScoreList[1].minutes.ToString() +
-                            ":" + GameManager.highScoreList[1].minutes.ToString(), new Vector2(730, 750), Color.Red);
+                            ":" + GameManager.highScoreList[1].seconds.ToString(), new Vector2(730, 750), Color.Red);
                         spriteBatch.DrawString(TextureManager.timeFont, "3: " + GameManager.highScoreList[2].name.ToString() + "    " + GameManager.highScoreList[2].minutes.ToString() +
-                            ":" + GameManager.highScoreList[2].minutes.ToString(), new Vector2(730, 900), Color.Red);
+                            ":" + GameManager.highScoreList[2].seconds.ToString(), new Vector2(730, 900), Color.Red);
                     break;
                 #endregion
             #endregion

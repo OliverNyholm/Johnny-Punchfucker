@@ -19,12 +19,15 @@ namespace Johnny_Punchfucker
             : base(Content, playerManager, enemyManager)
         {
             contentLoader = new ContentLoader(Content, @"Content/Levels/lvl4environment.txt", @"Content/Levels/lvl4items.txt");
+            nextLevelBox = new Rectangle(8000, (int)502, 0, 0);
         }
 
         public void Update(GameTime gameTime)
         {
             if (Susan.dead)
                 nextLevelBox = new Rectangle(2537, (int)502, 40, 300); //tar man i denna vinner man spelet
+            else
+                nextLevelBox = new Rectangle(8000, (int)502, 0, 0);
 
             contentLoader.Update(gameTime);
             CameraStopWhenEnemySpawn(playerManager, gameTime);

@@ -35,7 +35,7 @@ namespace Johnny_Punchfucker
             if (Mingy.died)
                 nextLevelBox = new Rectangle(ContentLoader.levelEndPosX, (int)335, 40, 300);
             else
-                nextLevelBox = new Rectangle(ContentLoader.levelEndPosX, (int)335, 0, 0);
+                nextLevelBox = new Rectangle(ContentLoader.levelEndPosX + 2000, (int)335, 0, 0);
 
             //Om spelaren går i mål så kommer man att ha klarat av level 1 och level 2 ska börja
             for (int i = 0; i < playerManager.playerList.Count; i++)
